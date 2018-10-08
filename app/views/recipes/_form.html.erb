@@ -1,0 +1,59 @@
+<%= form_for @recipe do |f| %>
+  <% if recipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+      <% recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="field">
+    <%= f.file_field :image %>
+    <% if @recipe.image? %>
+      <%= image_tag @recipe.image.url, class: "recipe-show" %>
+      <%= f.check_box :remove_image %>
+        Remove Image
+    <% end %>
+ </div>
+  <div class="field">
+    <%= f.label :title %>
+    <br/>
+    <%= f.text_field :title, id: :recipe_title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <br/>
+    <%= f.text_area :description, id: :recipe_description %>
+  </div>
+
+<div class="field">
+  <h3>Add Ingredients</h3>
+  <div id='ingredients'>
+    <%= f.fields_for :ingredients do |ingredient| %>
+      <%= render 'ingredient_fields', :f => ingredient %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add ingredient', f, :ingredients %>
+      </div>
+  </div>
+</div>
+
+<div class="field">
+  <h3>Add Steps</h3>
+  <div id='steps'>
+    <%= f.fields_for :steps do |step| %>
+      <%= render 'step_fields', :f => step %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association 'add step', f, :steps %>
+      </div>
+  </div>
+</div>
+  <div class="actions">
+    <%= f.submit 'Save' %>
+  </div>
+<% end %>

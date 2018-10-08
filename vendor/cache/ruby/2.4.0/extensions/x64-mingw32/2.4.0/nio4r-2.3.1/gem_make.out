@@ -1,0 +1,14 @@
+current directory: C:/Users/Destini/recipe_db/vendor/cache/ruby/2.4.0/gems/nio4r-2.3.1/ext/nio4r
+C:/Ruby24-x64/bin/ruby.exe -r ./siteconf20181005-13356-f19kt8.rb extconf.rb
+
+current directory: C:/Users/Destini/recipe_db/vendor/cache/ruby/2.4.0/gems/nio4r-2.3.1/ext/nio4r
+make "DESTDIR=" clean
+'make' is not recognized as an internal or external command,
+operable program or batch file.
+
+current directory: C:/Users/Destini/recipe_db/vendor/cache/ruby/2.4.0/gems/nio4r-2.3.1/ext/nio4r
+make "DESTDIR="
+'make' is not recognized as an internal or external command,
+operable program or batch file.
+
+make failed, exit code 1

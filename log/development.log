@@ -1,0 +1,2360 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateRecipes (20180924025358)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "recipes" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180924025358_create_recipes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180924025358"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateIngredients (20180924032553)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "ingredients" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "recipe_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_3ee351e1cd"
+FOREIGN KEY ("recipe_id")
+  REFERENCES "recipes" ("id")
+)[0m
+  ↳ db/migrate/20180924032553_create_ingredients.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_ingredients_on_recipe_id" ON "ingredients" ("recipe_id")[0m
+  ↳ db/migrate/20180924032553_create_ingredients.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180924032553"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to CreateSteps (20180924032702)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "steps" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "direction" text, "recipe_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_2619d9e771"
+FOREIGN KEY ("recipe_id")
+  REFERENCES "recipes" ("id")
+)[0m
+  ↳ db/migrate/20180924032702_create_steps.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_steps_on_recipe_id" ON "steps" ("recipe_id")[0m
+  ↳ db/migrate/20180924032702_create_steps.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180924032702"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to AddImageToRecipe (20181001022814)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "recipes" ADD "image" varchar[0m
+  ↳ db/migrate/20181001022814_add_image_to_recipe.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181001022814"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to DeviseCreateUsers (20181004203557)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20181004203557_devise_create_users.rb:5
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  ↳ db/migrate/20181004203557_devise_create_users.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  ↳ db/migrate/20181004203557_devise_create_users.rb:40
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181004203557"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-10-08 11:42:58.534724"], ["updated_at", "2018-10-08 11:42:58.534724"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Started GET "/" for 127.0.0.1 at 2018-10-08 06:46:19 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 4005ms (Views: 3982.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:46:26 -0500
+Processing by RecipesController#new as HTML
+Completed 401 Unauthorized in 10ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 06:46:26 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (23.8ms)
+Completed 200 OK in 102ms (Views: 85.7ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-10-08 06:46:29 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 79ms (Views: 77.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-10-08 06:46:37 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+S88QURqbmlq9fnTYlJQlSJ73DLrp8Ji2lb12awhRJgno6pqsOyBsofgduxlTgq2t+6QVDPIH/RfSRSzS4xT/w==", "user"=>{"email"=>"test@gmsail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@gmsail.com"], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 217ms (Views: 75.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-10-08 06:46:45 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gghixMjM2VWjdm4uxNt/p1CXlAjp00W07unkBZ9uVKpLVywq0RoyxTaWWJtXW4HQyPy+2eSqOfwLHsRhHhhMtw==", "user"=>{"email"=>"test@gmsail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@gmsail.com"], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[36mUser Create (2.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test@gmsail.com"], ["encrypted_password", "$2a$11$lCuf04z/IQr/2uPU7X7XguTy8SvpLsNyKluTQ2bAJ.V7wzmXfQbvG"], ["created_at", "2018-10-08 11:46:45.608132"], ["updated_at", "2018-10-08 11:46:45.608132"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+Redirected to http://localhost:3000/recipes/new
+Completed 302 Found in 129ms (ActiveRecord: 4.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:46:45 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.5ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'user_id' for Recipe.):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+Started GET "/recipes/" for 127.0.0.1 at 2018-10-08 06:47:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/recipes"):
+  
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:47:10 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'user_id' for Recipe.):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:47:10 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'user_id' for Recipe.):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:48:10 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 1.1ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'user_id' for Recipe.):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:48:53 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.9ms)
+
+
+  
+NoMethodError (undefined method `user=' for nil:NilClass):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:49:10 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_form.html.erb (2.6ms)
+  Rendered recipes/new.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 0.6ms)
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <%= form_for @recipe do |f| %>
+    2:   <% if recipe.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+  
+app/views/recipes/_form.html.erb:1:in `_app_views_recipes__form_html_erb___695035737864580913_70283854073700'
+app/views/recipes/new.html.erb:3:in `_app_views_recipes_new_html_erb__1800107527831958473_70283924052380'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:51:04 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'user_id' for Recipe.):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:51:09 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 44ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'user_id' for Recipe.):
+  
+app/controllers/recipes_controller.rb:19:in `new'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Migrating to AddUserIdToRecipe (20181008115246)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "recipes" ADD "user_id" integer[0m
+  ↳ db/migrate/20181008115246_add_user_id_to_recipe.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20181008115246"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/rake-12.3.1/lib/rake/task.rb:271
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:53:00 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (1.2ms)
+  Rendered recipes/_step_fields.html.erb (0.9ms)
+  Rendered recipes/_form.html.erb (55.4ms)
+  Rendered recipes/new.html.erb within layouts/application (58.6ms)
+Completed 200 OK in 574ms (Views: 522.7ms | ActiveRecord: 2.3ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2018-10-08 06:53:10 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Vwv7oxxS81eMLeEIi5yP2uYm9oJXI8GoMG+9UqP6GKSeVLVNBYQYxxnN170YHHGtfk3cU1paveDVmJ02IowAuQ==", "recipe"=>{"title"=>"asdf", "description"=>"asdf", "ingredients_attributes"=>{"1538999584685"=>{"ingredients"=>{"content"=>"asdf"}, "_destroy"=>"false"}, "1538999585903"=>{"ingredients"=>{"content"=>"ads"}, "_destroy"=>"false"}, "1538999587277"=>{"ingredients"=>{"content"=>"add"}, "_destroy"=>"false"}}, "steps_attributes"=>{"1538999588710"=>{"steps"=>{"content"=>"adds"}, "_destroy"=>"false"}}}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mRecipe Create (0.9ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "asdf"], ["description", "asdf"], ["created_at", "2018-10-08 11:53:10.940835"], ["updated_at", "2018-10-08 11:53:10.940835"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mIngredient Create (0.7ms)[0m  [1m[32mINSERT INTO "ingredients" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 1], ["created_at", "2018-10-08 11:53:10.943492"], ["updated_at", "2018-10-08 11:53:10.943492"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mIngredient Create (0.1ms)[0m  [1m[32mINSERT INTO "ingredients" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 1], ["created_at", "2018-10-08 11:53:10.945404"], ["updated_at", "2018-10-08 11:53:10.945404"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mIngredient Create (0.1ms)[0m  [1m[32mINSERT INTO "ingredients" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 1], ["created_at", "2018-10-08 11:53:10.947365"], ["updated_at", "2018-10-08 11:53:10.947365"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mStep Create (0.4ms)[0m  [1m[32mINSERT INTO "steps" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 1], ["created_at", "2018-10-08 11:53:10.948353"], ["updated_at", "2018-10-08 11:53:10.948353"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+Redirected to http://localhost:3000/recipes/1
+Completed 302 Found in 19ms (ActiveRecord: 4.4ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-08 06:53:10 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (3.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 61ms (Views: 55.1ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2018-10-08 06:53:13 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.9ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.6ms)
+  Rendered recipes/_ingredient_fields.html.erb (1.0ms)
+  [1m[36mStep Load (0.3ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (1.2ms)
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_form.html.erb (31.9ms)
+  Rendered recipes/edit.html.erb within layouts/application (34.3ms)
+Completed 200 OK in 97ms (Views: 87.4ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/recipes/1" for 127.0.0.1 at 2018-10-08 06:53:17 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"eS8iZV8V6tCy4DvYwjBCQI5Un+w3MoGIxyy3g3G2U7FEc7nmGKZ1fDjB4qqNs6tOtzV6YLJiIf5SJFbsQ3bVLw==", "recipe"=>{"title"=>"asdf", "description"=>"asdf", "ingredients_attributes"=>{"0"=>{"ingredients"=>{"content"=>"ads"}, "_destroy"=>"false", "id"=>"1"}, "1"=>{"ingredients"=>{"content"=>"add"}, "_destroy"=>"false", "id"=>"2"}, "2"=>{"ingredients"=>{"content"=>"add"}, "_destroy"=>"false", "id"=>"3"}}, "steps_attributes"=>{"0"=>{"steps"=>{"content"=>""}, "_destroy"=>"false", "id"=>"1"}}}, "commit"=>"Save", "id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?, ?)[0m  [["recipe_id", 1], ["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" = ?[0m  [["recipe_id", 1], ["id", 1]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Redirected to http://localhost:3000/recipes/1
+Completed 302 Found in 9ms (ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-08 06:53:17 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (3.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 54ms (Views: 50.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2018-10-08 06:53:21 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.8ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.3ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.3ms)
+  Rendered recipes/_ingredient_fields.html.erb (1.0ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_form.html.erb (18.7ms)
+  Rendered recipes/edit.html.erb within layouts/application (20.8ms)
+Completed 200 OK in 69ms (Views: 64.4ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/recipes/1" for 127.0.0.1 at 2018-10-08 06:53:25 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tbXQoc3SKjh1h0fstQMC02QsgyiTIOtbEfOYrlNUPM2I6UsiimG1lP+mnp76gOvdXU1mpBZwSy2E+3nBYZS6Uw==", "recipe"=>{"title"=>"asdf", "description"=>"asdf", "ingredients_attributes"=>{"0"=>{"ingredients"=>{"content"=>""}, "_destroy"=>"1", "id"=>"1"}, "1"=>{"ingredients"=>{"content"=>""}, "_destroy"=>"1", "id"=>"2"}, "2"=>{"ingredients"=>{"content"=>""}, "_destroy"=>"1", "id"=>"3"}}, "steps_attributes"=>{"0"=>{"steps"=>{"content"=>""}, "_destroy"=>"1", "id"=>"1"}}}, "commit"=>"Save", "id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.4ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?, ?)[0m  [["recipe_id", 1], ["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" = ?[0m  [["recipe_id", 1], ["id", 1]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?[0m  [["ingredient_id", 1]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.5ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: users.ingredient_id: SELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?):
+  
+app/controllers/recipes_controller.rb:49:in `block in update'
+app/controllers/recipes_controller.rb:48:in `update'
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2018-10-08 06:53:39 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (1.2ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.6ms)
+  Rendered recipes/_ingredient_fields.html.erb (1.4ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (1.0ms)
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_form.html.erb (24.5ms)
+  Rendered recipes/edit.html.erb within layouts/application (27.6ms)
+Completed 200 OK in 100ms (Views: 92.1ms | ActiveRecord: 0.8ms)
+
+
+Started PATCH "/recipes/1" for 127.0.0.1 at 2018-10-08 06:53:44 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6Z/O1dSIju5RIf91lhOfL+Oe+2XOu0b8RRpA7oNvqj3Uw1VWkzsRQtsAJgfZkHYh2v8e6Uvr5orQEqGBsa8sow==", "recipe"=>{"title"=>"asdf", "description"=>"asdf", "ingredients_attributes"=>{"0"=>{"ingredients"=>{"content"=>"asdf"}, "_destroy"=>"false", "id"=>"1"}, "1"=>{"ingredients"=>{"content"=>""}, "_destroy"=>"1", "id"=>"2"}, "2"=>{"ingredients"=>{"content"=>"ads"}, "_destroy"=>"false", "id"=>"3"}}, "steps_attributes"=>{"0"=>{"steps"=>{"content"=>"adsf"}, "_destroy"=>"false", "id"=>"1"}}}, "commit"=>"Save", "id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?, ?)[0m  [["recipe_id", 1], ["id", 1], ["id", 2], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" = ?[0m  [["recipe_id", 1], ["id", 1]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?[0m  [["ingredient_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.6ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: users.ingredient_id: SELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?):
+  
+app/controllers/recipes_controller.rb:49:in `block in update'
+app/controllers/recipes_controller.rb:48:in `update'
+Started GET "/pages/about" for 127.0.0.1 at 2018-10-08 06:53:50 -0500
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 64ms (Views: 60.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:54:25 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.8ms)
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+  Rendered recipes/_form.html.erb (8.0ms)
+  Rendered recipes/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 55ms (Views: 50.4ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2018-10-08 06:54:27 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"f+YRKFvcGcwNatoB5RVeUKpyeDNn5pZ7HOeV/Co46uAu9jRCYoKRDEYu1ro3IYNtqxgo95o2p5A32A4Qul1WaA==", "recipe"=>{"title"=>"add", "description"=>"asdf"}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mRecipe Create (0.4ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", "add"], ["description", "asdf"], ["created_at", "2018-10-08 11:54:27.894262"], ["updated_at", "2018-10-08 11:54:27.894262"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+Redirected to http://localhost:3000/recipes/2
+Completed 302 Found in 9ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/recipes/2" for 127.0.0.1 at 2018-10-08 06:54:27 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 56ms (Views: 51.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 06:54:29 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (1.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 52ms (Views: 49.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2018-10-08 06:54:34 -0500
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/registrations/edit.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 61ms (Views: 59.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 06:54:35 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.9ms)
+  Rendered recipes/_step_fields.html.erb (1.3ms)
+  Rendered recipes/_form.html.erb (10.8ms)
+  Rendered recipes/new.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 67ms (Views: 62.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/about" for 127.0.0.1 at 2018-10-08 06:54:36 -0500
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 50ms (Views: 47.2ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2018-10-08 06:54:37 -0500
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"/4GH+yaDxizJERs8jpr6iKjjSm42512gmH6oMr51jMs23skVP1UtvFzxLYkdGgT/MIhgvzueIeh9iYhWPwOU1g=="}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/lib/devise/models/rememberable.rb:62
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/lib/devise/models/rememberable.rb:62
+Redirected to http://localhost:3000/
+Completed 302 Found in 21ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 06:54:37 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 51ms (Views: 48.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2018-10-08 06:54:39 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 06:54:39 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 52ms (Views: 49.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 06:54:42 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 63ms (Views: 60.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 06:54:43 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 61ms (Views: 58.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 06:54:44 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 72ms (Views: 61.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:21:45 -0500
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/web-console-3.7.0/lib/web_console/middleware.rb:135
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.6ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 537ms (Views: 514.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/recipes/2/edit" for 127.0.0.1 at 2018-10-08 12:21:58 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 12:21:58 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (14.9ms)
+Completed 200 OK in 69ms (Views: 59.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:22:02 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 52ms (Views: 49.3ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/recipes/1" for 127.0.0.1 at 2018-10-08 12:22:06 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/recipes/1"):
+  
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started DELETE "/recipes/2" for 127.0.0.1 at 2018-10-08 12:22:11 -0500
+  
+ActionController::RoutingError (No route matches [DELETE] "/recipes/2"):
+  
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-08 12:22:15 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.7ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.4ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (59.6ms)
+Completed 200 OK in 110ms (Views: 101.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/recipes/1/edit" for 127.0.0.1 at 2018-10-08 12:22:17 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 12:22:17 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 67ms (Views: 65.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/pages/about" for 127.0.0.1 at 2018-10-08 12:22:20 -0500
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 48ms (Views: 45.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:22:21 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (1.0ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 48ms (Views: 44.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:22:24 -0500
+Processing by RecipesController#new as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 12:22:24 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.8ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 57ms (Views: 53.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:22:25 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 56ms (Views: 53.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2018-10-08 12:23:23 -0500
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 76ms (Views: 75.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2018-10-08 12:23:25 -0500
+Processing by Devise::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 58ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2018-10-08 12:23:33 -0500
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"qOIgaiFEniF/Q0kUOwUROxNFG3vNrZ4rWOO2yDmRPyf9Dsthz3Hy2cWjYoYhPT+6Zisl08/62qfXiMIqIpvbLg==", "user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[36mUser Exists (1.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test@gmail.com"], ["encrypted_password", "$2a$11$QPRBIAGjohaPN1U4si9UNu/YqQ0otKsl8ywWQ1SEJ9IYpgbt55xsq"], ["created_at", "2018-10-08 17:23:33.371325"], ["updated_at", "2018-10-08 17:23:33.371325"]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/devise-4.5.0/app/controllers/devise/registrations_controller.rb:19
+Redirected to http://localhost:3000/recipes/new
+Completed 302 Found in 144ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:23:33 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (1.0ms)
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_form.html.erb (12.6ms)
+  Rendered recipes/new.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 56ms (Views: 51.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2018-10-08 12:25:25 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jmTTCIKpetVsU48tQ7d/hsBYLy2Yd32UsqDm62mLU3lSh2ncf5Q09ekUQZNISWvGFjb3xvXpp5RgnMPoztUa0w==", "recipe"=>{"image"=>#<ActionDispatch::Http::UploadedFile:0x007fa172de5b00 @tempfile=#<Tempfile:/var/folders/tv/kc07j7lj6pl5_lyd_cr1r5x40000gn/T/RackMultipart20181008-78841-r0k08o.png>, @original_filename="Screen Shot 2018-08-17 at 6.53.14 AM.png", @content_type="image/png", @headers="Content-Disposition: form-data; name=\"recipe[image]\"; filename=\"Screen Shot 2018-08-17 at 6.53.14 AM.png\"\r\nContent-Type: image/png\r\n">, "title"=>"h;kihj", "description"=>";lj", "ingredients_attributes"=>{"1539019520941"=>{"ingredients"=>{"content"=>"asdf"}, "_destroy"=>"false"}, "1539019522092"=>{"ingredients"=>{"content"=>"asdf"}, "_destroy"=>"false"}}, "steps_attributes"=>{"1539019523278"=>{"steps"=>{"content"=>"ads"}, "_destroy"=>"false"}, "1539019524732"=>{"steps"=>{"content"=>"add"}, "_destroy"=>"false"}}}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+Unpermitted parameter: :steps
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mRecipe Create (0.6ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "created_at", "updated_at", "image") VALUES (?, ?, ?, ?, ?)[0m  [["title", "h;kihj"], ["description", ";lj"], ["created_at", "2018-10-08 17:25:25.848505"], ["updated_at", "2018-10-08 17:25:25.848505"], ["image", "Screen_Shot_2018-08-17_at_6.53.14_AM.png"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mIngredient Create (0.8ms)[0m  [1m[32mINSERT INTO "ingredients" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 3], ["created_at", "2018-10-08 17:25:25.850276"], ["updated_at", "2018-10-08 17:25:25.850276"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mIngredient Create (0.1ms)[0m  [1m[32mINSERT INTO "ingredients" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 3], ["created_at", "2018-10-08 17:25:25.852021"], ["updated_at", "2018-10-08 17:25:25.852021"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mStep Create (0.5ms)[0m  [1m[32mINSERT INTO "steps" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 3], ["created_at", "2018-10-08 17:25:25.852935"], ["updated_at", "2018-10-08 17:25:25.852935"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mStep Create (0.1ms)[0m  [1m[32mINSERT INTO "steps" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 3], ["created_at", "2018-10-08 17:25:25.854452"], ["updated_at", "2018-10-08 17:25:25.854452"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[35m (0.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+Redirected to http://localhost:3000/recipes/3
+Completed 302 Found in 21ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:25:25 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (3.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 76ms (Views: 71.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:27:26 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (21.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 97ms (Views: 75.8ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:27:27 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (1.6ms)
+  Rendered recipes/_ingredient_fields.html.erb (1.0ms)
+  Rendered recipes/_ingredient_fields.html.erb (1.3ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+  Rendered recipes/_step_fields.html.erb (2.5ms)
+  Rendered recipes/_form.html.erb (38.1ms)
+  Rendered recipes/edit.html.erb within layouts/application (40.9ms)
+Completed 200 OK in 94ms (Views: 84.2ms | ActiveRecord: 0.7ms)
+
+
+Started PATCH "/recipes/3" for 127.0.0.1 at 2018-10-08 12:27:30 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EYog/L023KXxzNTcI12vO+CNlPJsUeT0IAcQaiNKfG/BimVs/Cfnnuot/paaXnRp8RVi03riT/rF63VdeJoMeQ==", "recipe"=>{"remove_image"=>"0", "title"=>"h;kihj", "description"=>";lj", "ingredients_attributes"=>{"0"=>{"ingredients"=>{"content"=>"asdfsadf"}, "_destroy"=>"false", "id"=>"4"}, "1"=>{"ingredients"=>{"content"=>"asdfadsf"}, "_destroy"=>"false", "id"=>"5"}}, "steps_attributes"=>{"0"=>{"steps"=>{"content"=>""}, "_destroy"=>"false", "id"=>"2"}, "1"=>{"steps"=>{"content"=>""}, "_destroy"=>"false", "id"=>"3"}}}, "commit"=>"Save", "id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+Unpermitted parameter: :steps
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?)[0m  [["recipe_id", 3], ["id", 4], ["id", 5]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" IN (?, ?)[0m  [["recipe_id", 3], ["id", 2], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mRecipe Update (0.4ms)[0m  [1m[33mUPDATE "recipes" SET "image" = ?, "updated_at" = ? WHERE "recipes"."id" = ?[0m  [["image", "Screen_Shot_2018-08-17_at_6.53.14_AM.png"], ["updated_at", "2018-10-08 17:27:30.104077"], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Redirected to http://localhost:3000/recipes/3
+Completed 302 Found in 14ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:27:30 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.8ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 48ms (Views: 44.4ms | ActiveRecord: 0.5ms)
+
+
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" ORDER BY "recipes"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT  "steps".* FROM "steps" ORDER BY "steps"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:30:13 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:30:13 -0500
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Processing by RecipesController#edit as HTML
+  ↳ app/controllers/recipes_controller.rb:72
+  Parameters: {"id"=>"3"}
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering recipes/show.html.erb within layouts/application
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/views/recipes/show.html.erb:9
+  ↳ app/controllers/recipes_controller.rb:24
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  Rendering recipes/edit.html.erb within layouts/application
+  ↳ app/views/recipes/show.html.erb:15
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (1.1ms)
+  Rendered recipes/show.html.erb within layouts/application (14.2ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.6ms)
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (1.1ms)
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+  Rendered recipes/_form.html.erb (50.1ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered recipes/edit.html.erb within layouts/application (54.7ms)
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 88ms (Views: 79.0ms | ActiveRecord: 0.6ms)
+
+
+Completed 200 OK in 137ms (Views: 123.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:30:14 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.8ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.3ms)
+  Rendered recipes/_ingredient_fields.html.erb (1.1ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_form.html.erb (20.1ms)
+  Rendered recipes/edit.html.erb within layouts/application (22.1ms)
+Completed 200 OK in 82ms (Views: 76.5ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/recipes/3" for 127.0.0.1 at 2018-10-08 12:30:20 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uSBPdibXQL1T5EyPG+FarDTVvxQW7zZfMOZ6Y4+mSKppIArmZ8Z7hkgFZsWi4oH+JU1JNQBcnVHVCh9U1HY4vA==", "recipe"=>{"remove_image"=>"0", "title"=>"h;kihj", "description"=>";lj", "ingredients_attributes"=>{"0"=>{"ingredients"=>{"content"=>"asdfasdf"}, "_destroy"=>"false", "id"=>"4"}, "1"=>{"ingredients"=>{"content"=>"asdfdsaf"}, "_destroy"=>"false", "id"=>"5"}}, "steps_attributes"=>{"0"=>{"steps"=>{"direction"=>"asdfadsf"}, "_destroy"=>"false", "id"=>"2"}, "1"=>{"steps"=>{"direction"=>"asdfasddfs"}, "_destroy"=>"false", "id"=>"3"}}}, "commit"=>"Save", "id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :ingredients
+Unpermitted parameter: :steps
+Unpermitted parameter: :steps
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?)[0m  [["recipe_id", 3], ["id", 4], ["id", 5]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" IN (?, ?)[0m  [["recipe_id", 3], ["id", 2], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mRecipe Update (0.2ms)[0m  [1m[33mUPDATE "recipes" SET "image" = ?, "updated_at" = ? WHERE "recipes"."id" = ?[0m  [["image", "Screen_Shot_2018-08-17_at_6.53.14_AM.png"], ["updated_at", "2018-10-08 17:30:20.100483"], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Redirected to http://localhost:3000/recipes/3
+Completed 302 Found in 13ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:30:20 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.9ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 52ms (Views: 48.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:30:22 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 47ms (Views: 44.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:30:23 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.7ms)
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+  Rendered recipes/_form.html.erb (7.8ms)
+  Rendered recipes/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 58ms (Views: 50.9ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2018-10-08 12:30:25 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AXZcnZGXYkwx1/gf6F+KggubHWTjRlY4hWrTE4YJQdKNcUzH+ZHJDCMhMHX38pShuqW5sYqfFs7pqWK7pCePpg==", "recipe"=>{"title"=>"", "description"=>"", "steps_attributes"=>{"1539019824748"=>{"steps"=>{"direction"=>"adsfasdf"}, "_destroy"=>"false"}}}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Unpermitted parameter: :steps
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mRecipe Create (0.3ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["title", ""], ["description", ""], ["created_at", "2018-10-08 17:30:25.961951"], ["updated_at", "2018-10-08 17:30:25.961951"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mStep Create (0.2ms)[0m  [1m[32mINSERT INTO "steps" ("recipe_id", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["recipe_id", 4], ["created_at", "2018-10-08 17:30:25.963511"], ["updated_at", "2018-10-08 17:30:25.963511"]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+Redirected to http://localhost:3000/recipes/4
+Completed 302 Found in 8ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2018-10-08 12:30:25 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 51ms (Views: 46.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2018-10-08 12:32:07 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (3.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 62ms (Views: 57.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes/4/edit" for 127.0.0.1 at 2018-10-08 12:32:08 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+  Rendered recipes/_step_fields.html.erb (0.6ms)
+  Rendered recipes/_form.html.erb (12.3ms)
+  Rendered recipes/edit.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 81ms (Views: 72.6ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/recipes/4" for 127.0.0.1 at 2018-10-08 12:32:12 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Klbh09q+sqM6ScuUOKr9EEvpIJ3MvJR50ksFE+wGXt4QuCQpRBqtoH+7ZOBE3aeu7hKvkKc7YRwC1U5ojJwF6Q==", "recipe"=>{"title"=>"", "description"=>"", "ingredients_attributes"=>{"1539019930382"=>{"content"=>"asdfdsaf", "_destroy"=>"false"}, "1539019931465"=>{"content"=>"adsfdasf", "_destroy"=>"false"}}, "steps_attributes"=>{"0"=>{"steps"=>{"direction"=>""}, "_destroy"=>"false", "id"=>"4"}}}, "commit"=>"Save", "id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+Unpermitted parameter: :steps
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" = ?[0m  [["recipe_id", 4], ["id", 4]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Create (0.5ms)[0m  [1m[32mINSERT INTO "ingredients" ("content", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "asdfdsaf"], ["recipe_id", 4], ["created_at", "2018-10-08 17:32:12.710241"], ["updated_at", "2018-10-08 17:32:12.710241"]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Create (0.1ms)[0m  [1m[32mINSERT INTO "ingredients" ("content", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "adsfdasf"], ["recipe_id", 4], ["created_at", "2018-10-08 17:32:12.712242"], ["updated_at", "2018-10-08 17:32:12.712242"]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Redirected to http://localhost:3000/recipes/4
+Completed 302 Found in 14ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2018-10-08 12:32:12 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 52ms (Views: 48.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2018-10-08 12:32:48 -0500
+Started GET "/recipes/4/edit" for 127.0.0.1 at 2018-10-08 12:32:48 -0500
+Processing by RecipesController#show as HTML
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:24
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendering recipes/edit.html.erb within layouts/application
+  Rendered recipes/show.html.erb within layouts/application (10.9ms)
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+Completed 200 OK in 85ms (Views: 79.3ms | ActiveRecord: 0.7ms)
+
+
+  Rendered recipes/_form.html.erb (59.4ms)
+  Rendered recipes/edit.html.erb within layouts/application (63.9ms)
+Completed 200 OK in 142ms (Views: 127.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes/4/edit" for 127.0.0.1 at 2018-10-08 12:32:50 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.6ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.2ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.6ms)
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (16.2ms)
+  Rendered recipes/edit.html.erb within layouts/application (18.3ms)
+Completed 200 OK in 66ms (Views: 60.9ms | ActiveRecord: 0.6ms)
+
+
+Started PATCH "/recipes/4" for 127.0.0.1 at 2018-10-08 12:32:53 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+HShwYht9D4sc/6Y41IEVOxgGSLtGHPclKK4vxwg1EzCmmQ7FsnrPWmBUeyfJV7qSZuWL4afhrlEPPPEfLqPew==", "recipe"=>{"title"=>"", "description"=>"", "ingredients_attributes"=>{"0"=>{"content"=>"asdfdsaf", "_destroy"=>"false", "id"=>"6"}, "1"=>{"content"=>"adsfdasf", "_destroy"=>"false", "id"=>"7"}}, "steps_attributes"=>{"0"=>{"direction"=>"asdfda", "_destroy"=>"false", "id"=>"4"}, "1539019972070"=>{"direction"=>"asdfadfs", "_destroy"=>"false"}}}, "commit"=>"Save", "id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.3ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?)[0m  [["recipe_id", 4], ["id", 6], ["id", 7]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" = ?[0m  [["recipe_id", 4], ["id", 4]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Update (0.2ms)[0m  [1m[33mUPDATE "steps" SET "direction" = ?, "updated_at" = ? WHERE "steps"."id" = ?[0m  [["direction", "asdfda"], ["updated_at", "2018-10-08 17:32:53.246576"], ["id", 4]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Create (0.2ms)[0m  [1m[32mINSERT INTO "steps" ("direction", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["direction", "asdfadfs"], ["recipe_id", 4], ["created_at", "2018-10-08 17:32:53.247725"], ["updated_at", "2018-10-08 17:32:53.247725"]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Redirected to http://localhost:3000/recipes/4
+Completed 302 Found in 13ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2018-10-08 12:32:53 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 52ms (Views: 48.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes/4" for 127.0.0.1 at 2018-10-08 12:33:44 -0500
+Started GET "/recipes/4/edit" for 127.0.0.1 at 2018-10-08 12:33:44 -0500
+Processing by RecipesController#show as HTML
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"4"}
+  Parameters: {"id"=>"4"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:24
+  ↳ app/views/recipes/show.html.erb:9
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/show.html.erb:15
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  Rendered recipes/show.html.erb within layouts/application (16.1ms)
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.2ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 4]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_step_fields.html.erb (0.2ms)
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (45.9ms)
+  Rendered recipes/edit.html.erb within layouts/application (52.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 85ms (Views: 79.2ms | ActiveRecord: 0.5ms)
+
+
+Completed 200 OK in 123ms (Views: 108.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:33:48 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 55ms (Views: 52.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:33:50 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 46ms (Views: 42.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:33:53 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.1ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_step_fields.html.erb (0.2ms)
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_form.html.erb (15.8ms)
+  Rendered recipes/edit.html.erb within layouts/application (17.7ms)
+Completed 200 OK in 62ms (Views: 57.4ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/recipes/3" for 127.0.0.1 at 2018-10-08 12:33:58 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5nJtwZoO2DPnNoIQKi2ayQtaZdbJNzsJZCMAwwfa8H42cihR2x/jCPzXqFqTLkGbGsKT99+EkAeBz2X0XAqAaA==", "recipe"=>{"remove_image"=>"0", "title"=>"h;kihj", "description"=>";lj", "ingredients_attributes"=>{"0"=>{"content"=>"", "_destroy"=>"1", "id"=>"4"}, "1"=>{"content"=>"", "_destroy"=>"1", "id"=>"5"}}, "steps_attributes"=>{"0"=>{"direction"=>"", "_destroy"=>"1", "id"=>"2"}, "1"=>{"direction"=>"", "_destroy"=>"1", "id"=>"3"}}}, "commit"=>"Save", "id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" IN (?, ?)[0m  [["recipe_id", 3], ["id", 4], ["id", 5]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ? AND "steps"."id" IN (?, ?)[0m  [["recipe_id", 3], ["id", 2], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mRecipe Update (0.3ms)[0m  [1m[33mUPDATE "recipes" SET "image" = ?, "updated_at" = ? WHERE "recipes"."id" = ?[0m  [["image", "Screen_Shot_2018-08-17_at_6.53.14_AM.png"], ["updated_at", "2018-10-08 17:33:58.904370"], ["id", 3]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?[0m  [["ingredient_id", 4]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.8ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 2.4ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: users.ingredient_id: SELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?):
+  
+app/controllers/recipes_controller.rb:49:in `block in update'
+app/controllers/recipes_controller.rb:48:in `update'
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:34:07 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:34:07 -0500
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Processing by RecipesController#edit as HTML
+  ↳ app/controllers/recipes_controller.rb:72
+  Parameters: {"id"=>"3"}
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/controllers/recipes_controller.rb:24
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  Rendering recipes/edit.html.erb within layouts/application
+  ↳ app/views/recipes/show.html.erb:15
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  Rendered recipes/show.html.erb within layouts/application (14.8ms)
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.2ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/_form.html.erb:48
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendered recipes/_step_fields.html.erb (0.7ms)
+Completed 200 OK in 77ms (Views: 67.8ms | ActiveRecord: 0.6ms)
+
+
+  Rendered recipes/_step_fields.html.erb (0.2ms)
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_form.html.erb (53.8ms)
+  Rendered recipes/edit.html.erb within layouts/application (56.2ms)
+Completed 200 OK in 122ms (Views: 108.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:34:13 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 45ms (Views: 42.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/recipes/2/edit" for 127.0.0.1 at 2018-10-08 12:34:15 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (9.1ms)
+  Rendered recipes/edit.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 57ms (Views: 53.1ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/recipes/2" for 127.0.0.1 at 2018-10-08 12:34:17 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jG7h+gczZsEUdcqSZxmKoeEzLrNtTvbfnPl/UUQSjoeM5+C9qyycoB+Ys5BOYD09TUOnNUjE/ZP9RupVHauEPw==", "recipe"=>{"title"=>"add", "description"=>"asdf", "ingredients_attributes"=>{"1539020056655"=>{"content"=>"asdf", "_destroy"=>"false"}}}, "commit"=>"Save", "id"=>"2"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Create (0.4ms)[0m  [1m[32mINSERT INTO "ingredients" ("content", "recipe_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["content", "asdf"], ["recipe_id", 2], ["created_at", "2018-10-08 17:34:17.641850"], ["updated_at", "2018-10-08 17:34:17.641850"]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Redirected to http://localhost:3000/recipes/2
+Completed 302 Found in 7ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/recipes/2" for 127.0.0.1 at 2018-10-08 12:34:17 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (2.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 47ms (Views: 43.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes/2/edit" for 127.0.0.1 at 2018-10-08 12:34:19 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_form.html.erb (10.2ms)
+  Rendered recipes/edit.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 85ms (Views: 80.3ms | ActiveRecord: 0.5ms)
+
+
+Started PATCH "/recipes/2" for 127.0.0.1 at 2018-10-08 12:34:21 -0500
+Processing by RecipesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bMsvRy5w7ya+0V3V5atPyUjLfaC8k3dmgGXbJyhq/aNsQi4Agm8VR7U8JNfM0vhV5Lv0JpkZfCrh2k4jcdP3Gw==", "recipe"=>{"title"=>"add", "description"=>"asdf", "ingredients_attributes"=>{"0"=>{"content"=>"asdf", "_destroy"=>"1", "id"=>"8"}}}, "commit"=>"Save", "id"=>"2"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:46
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ? AND "ingredients"."id" = ?[0m  [["recipe_id", 2], ["id", 8]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?[0m  [["ingredient_id", 8]]
+  ↳ app/controllers/recipes_controller.rb:49
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/recipes_controller.rb:49
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: users.ingredient_id: SELECT "users".* FROM "users" WHERE "users"."ingredient_id" = ?):
+  
+app/controllers/recipes_controller.rb:49:in `block in update'
+app/controllers/recipes_controller.rb:48:in `update'
+Started GET "/recipes/2/edit" for 127.0.0.1 at 2018-10-08 12:34:47 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:24
+  Rendering recipes/edit.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/_form.html.erb:36
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 2]]
+  ↳ app/views/recipes/_form.html.erb:48
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (12.3ms)
+  Rendered recipes/edit.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 61ms (Views: 56.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2018-10-08 12:34:48 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/recipes"):
+  
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/recipes" for 127.0.0.1 at 2018-10-08 12:34:54 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/recipes"):
+  
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:34:54 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_form.html.erb (35.3ms)
+  Rendered recipes/new.html.erb within layouts/application (37.2ms)
+Completed 200 OK in 388ms (Views: 291.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/pages/about" for 127.0.0.1 at 2018-10-08 12:35:02 -0500
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 44ms (Views: 41.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:35:03 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 54ms (Views: 48.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2018-10-08 12:35:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/recipes"):
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:35:08 -0500
+  
+Processing by RecipesController#new as HTML
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  Rendered recipes/_step_fields.html.erb (0.4ms)
+  Rendered recipes/_form.html.erb (8.1ms)
+  Rendered recipes/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 234ms (Views: 226.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:35:09 -0500
+Started GET "/recipes" for 127.0.0.1 at 2018-10-08 12:35:09 -0500
+Processing by RecipesController#new as HTML
+  
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+ActionController::RoutingError (No route matches [GET] "/recipes"):
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  
+  Rendering recipes/new.html.erb within layouts/application
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  Rendered recipes/_ingredient_fields.html.erb (0.6ms)
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (12.8ms)
+  Rendered recipes/new.html.erb within layouts/application (15.8ms)
+Completed 200 OK in 61ms (Views: 56.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/recipes" for 127.0.0.1 at 2018-10-08 12:35:17 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/recipes"):
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:35:17 -0500
+  
+Processing by RecipesController#new as HTML
+actionpack (5.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.1) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.1) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.1) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.1) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.4ms)
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (7.4ms)
+  Rendered recipes/new.html.erb within layouts/application (9.4ms)
+Completed 200 OK in 319ms (Views: 309.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-08 12:35:18 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (3.2ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 74ms (Views: 68.7ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/recipes/1" for 127.0.0.1 at 2018-10-08 12:36:03 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.1ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 1]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (19.3ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 86ms (Views: 69.4ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/recipes/" for 127.0.0.1 at 2018-10-08 12:36:06 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:36:06 -0500
+  ↳ app/views/recipes/index.html.erb:6
+Processing by RecipesController#new as HTML
+  Rendered recipes/index.html.erb within layouts/application (11.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 80ms (Views: 76.6ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Started GET "/recipes/" for 127.0.0.1 at 2018-10-08 12:36:06 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/new.html.erb within layouts/application
+  Rendering recipes/index.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.5ms)
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  Rendered recipes/_step_fields.html.erb (0.6ms)
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/_form.html.erb (9.1ms)
+  Rendered recipes/index.html.erb within layouts/application (6.3ms)
+  Rendered recipes/new.html.erb within layouts/application (19.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 201ms (Views: 133.2ms | ActiveRecord: 0.2ms)
+
+
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 107ms (Views: 102.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2018-10-08 12:36:12 -0500
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/registrations/edit.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 51ms (Views: 49.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:36:14 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.8ms)
+  Rendered recipes/_step_fields.html.erb (0.5ms)
+  Rendered recipes/_form.html.erb (7.8ms)
+  Rendered recipes/new.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 57ms (Views: 52.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/pages/about" for 127.0.0.1 at 2018-10-08 12:36:15 -0500
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 45ms (Views: 42.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:36:16 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (3.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 49ms (Views: 46.3ms | ActiveRecord: 0.4ms)
+
+
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" ORDER BY "recipes"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:38:37 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (8.8ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 82ms (Views: 72.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:38:42 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (1.0ms)
+  Rendered recipes/_step_fields.html.erb (0.6ms)
+  Rendered recipes/_form.html.erb (26.1ms)
+  Rendered recipes/new.html.erb within layouts/application (28.0ms)
+Completed 200 OK in 84ms (Views: 69.2ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/recipes" for 127.0.0.1 at 2018-10-08 12:38:48 -0500
+Processing by RecipesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pURvqTdqAllC8XGs28Evq2gAuTUE6XSmcWmLHaqZwUQpQ3/zX2ypGVAHucbEbDGI2T4d4G0wNFAdqjq1iLcPMA==", "recipe"=>{"title"=>"new", "description"=>""}, "commit"=>"Save"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[36mRecipe Create (0.5ms)[0m  [1m[32mINSERT INTO "recipes" ("title", "description", "created_at", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?)[0m  [["title", "new"], ["description", ""], ["created_at", "2018-10-08 17:38:48.117633"], ["updated_at", "2018-10-08 17:38:48.117633"], ["user_id", 2]]
+  ↳ app/controllers/recipes_controller.rb:33
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/recipes_controller.rb:33
+Redirected to http://localhost:3000/recipes/5
+Completed 302 Found in 8ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/recipes/5" for 127.0.0.1 at 2018-10-08 12:38:48 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.2ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.2ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 5]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (3.7ms)
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 53ms (Views: 47.8ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:38:49 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 67ms (Views: 64.0ms | ActiveRecord: 0.3ms)
+
+
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" ORDER BY "recipes"."id" DESC LIMIT ?[0m  [["LIMIT", 1]]
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:41:04 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendered recipes/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 60ms (Views: 57.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:41:06 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendered recipes/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 56ms (Views: 53.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:41:50 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/recipes/index.html.erb:16
+  Rendered recipes/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 60ms (Views: 56.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:44:29 -0500
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/controllers/recipes_controller.rb:4:in `[]'
+app/controllers/recipes_controller.rb:4:in `<class:RecipesController>'
+app/controllers/recipes_controller.rb:1:in `<main>'
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:46:39 -0500
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/controllers/recipes_controller.rb:4:in `[]'
+app/controllers/recipes_controller.rb:4:in `<class:RecipesController>'
+app/controllers/recipes_controller.rb:1:in `<main>'
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:47:01 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/recipes/index.html.erb:16
+  Rendered recipes/index.html.erb within layouts/application (21.6ms)
+Completed 200 OK in 120ms (Views: 109.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:47:22 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (3.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 67ms (Views: 63.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:47:23 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.3ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 500 Internal Server Error in 278ms (ActiveRecord: 0.5ms)
+
+
+  
+NameError (undefined local variable or method `recipe' for #<RecipesController:0x007fa17428d080>
+Did you mean?  @recipe):
+  
+app/controllers/recipes_controller.rb:81:in `current_user_is_user'
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:47:39 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (12.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 81ms (Views: 71.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:47:41 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Redirected to http://localhost:3000/
+Filter chain halted as :current_user_is_user rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:47:41 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  Rendered recipes/index.html.erb within layouts/application (2.7ms)
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 73ms (Views: 66.4ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:48:11 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.4ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:48:11 -0500
+  ↳ app/views/recipes/index.html.erb:6
+Processing by RecipesController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Parameters: {"id"=>"3"}
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  ↳ app/views/recipes/index.html.erb:16
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered recipes/index.html.erb within layouts/application (12.5ms)
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Redirected to http://localhost:3000/
+Filter chain halted as :current_user_is_user rendered or redirected
+Completed 302 Found in 16ms (ActiveRecord: 0.3ms)
+
+
+Completed 200 OK in 80ms (Views: 77.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/recipes/3" for 127.0.0.1 at 2018-10-08 12:48:12 -0500
+Processing by RecipesController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mCACHE Recipe Load (0.0ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:14
+  Rendering recipes/show.html.erb within layouts/application
+  [1m[36mIngredient Load (0.1ms)[0m  [1m[34mSELECT "ingredients".* FROM "ingredients" WHERE "ingredients"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:9
+  [1m[36mStep Load (0.3ms)[0m  [1m[34mSELECT "steps".* FROM "steps" WHERE "steps"."recipe_id" = ?[0m  [["recipe_id", 3]]
+  ↳ app/views/recipes/show.html.erb:15
+  Rendered recipes/show.html.erb within layouts/application (70.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 143ms (Views: 136.7ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:48:15 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Redirected to http://localhost:3000/
+Filter chain halted as :current_user_is_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:48:15 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/recipes/index.html.erb:16
+  Rendered recipes/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 55ms (Views: 52.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/recipes/3/edit" for 127.0.0.1 at 2018-10-08 12:48:18 -0500
+Processing by RecipesController#edit as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT  "recipes".* FROM "recipes" WHERE "recipes"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/recipes_controller.rb:72
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Redirected to http://localhost:3000/
+Filter chain halted as :current_user_is_user rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:48:18 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.1ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/recipes/index.html.erb:16
+  Rendered recipes/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 48ms (Views: 45.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/pages/about" for 127.0.0.1 at 2018-10-08 12:48:49 -0500
+Processing by PagesController#about as HTML
+  Rendering pages/about.html.erb within layouts/application
+  Rendered pages/about.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+Completed 200 OK in 76ms (Views: 72.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/recipes/new" for 127.0.0.1 at 2018-10-08 12:48:50 -0500
+Processing by RecipesController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering recipes/new.html.erb within layouts/application
+  Rendered recipes/_ingredient_fields.html.erb (0.7ms)
+  Rendered recipes/_step_fields.html.erb (0.8ms)
+  Rendered recipes/_form.html.erb (9.2ms)
+  Rendered recipes/new.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 63ms (Views: 58.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/edit" for 127.0.0.1 at 2018-10-08 12:48:52 -0500
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  Rendering devise/registrations/edit.html.erb within layouts/application
+  Rendered devise/registrations/edit.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 50ms (Views: 47.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-10-08 12:48:54 -0500
+Processing by RecipesController#index as HTML
+  Rendering recipes/index.html.erb within layouts/application
+  [1m[36mRecipe Load (0.2ms)[0m  [1m[34mSELECT "recipes".* FROM "recipes"[0m
+  ↳ app/views/recipes/index.html.erb:6
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /Users/chrislam/.rvm/gems/ruby-2.3.3/gems/orm_adapter-0.5.0/lib/orm_adapter/adapters/active_record.rb:17
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/recipes/index.html.erb:16
+  Rendered recipes/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 56ms (Views: 51.9ms | ActiveRecord: 0.8ms)
+
+
